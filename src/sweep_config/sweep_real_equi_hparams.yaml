@@ -1,0 +1,95 @@
+program: src/train.py
+method: random
+
+metric:
+  goal: maximize
+  name: val_DetA
+
+run_cap: 120
+
+# Kill runs whose val_DetA isn't competitive after some epochs.
+early_terminate:
+  type: hyperband
+  min_iter: 20
+  eta: 3
+
+parameters:
+  # --- seed: one seed for hparam search; multi-seed comes after ---
+  seed:
+    value: 0
+
+  # --- swept: mask shape ---
+  # gaussian_sigma=0 → disk (with real_disk_radius); >0 → Gaussian heatmap.
+  # Mix both: include 0 explicitly + a few continuous σ values.
+  real_gaussian_sigma:
+    values: [0.0, 1.0, 1.5, 2.0, 2.5]
+  real_disk_radius:
+    values: [2.0, 3.0, 4.0]            # only active when gaussian_sigma=0
+  real_cluster_threshold:
+    values: [3.0, 5.0, 7.0]
+
+  # --- swept: optimisation ---
+  lr:
+    distribution: log_uniform_values
+    min: 5e-5
+    max: 5e-3
+  wd:
+    distribution: log_uniform_values
+    min: 1e-4
+    max: 0.2
+
+  # --- fixed: training schedule ---
+  epochs:
+    value: 80
+  batch_size:
+    value: 16
+  dice_weight:
+    value: 0
+  dataset_length:
+    value: 1600
+  early_stop_patience:
+    value: 20
+  burn_in:
+    value: 0
+  val_every:
+    value: 1
+
+  # --- fixed: data source (real, contiguous split) ---
+  data:
+    value: real
+  real_val_fraction:
+    value: 0.2
+  real_split_seed:
+    value: 0
+  real_split_mode:
+    value: contiguous
+  real_train_patch_size:
+    value: 128
+
+  # --- fixed: model (largest equiunet from the synthetic sweep) ---
+  model:
+    value: equiunet
+  depth:
+    value: 3
+  start_filters:
+    value: 16
+  max_rot_order:
+    value: 1
+  group_order:
+    value: -1
+  activation_type:
+    value: fourierbn
+  fourier_N:
+    value: 16
+  fourier_function:
+    value: p_relu
+  kernel_size:
+    value: 5
+  conv_sigma:
+    value: 0.93869
+
+  # --- runtime flags ---
+  link:
+    value: false
+  run_test:
+    value: false

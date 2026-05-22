@@ -1,0 +1,54 @@
+program: src/train.py
+method: grid
+
+metric:
+  goal: maximize
+  name: val_DetA
+
+parameters:
+  # --- training ---
+  seed:
+    values: [2, 3, 4]
+  lr:
+    value: 0.0047426
+  wd:
+    value: 0.082253
+  epochs:
+    value: 100
+  batch_size:
+    value: 16
+  dice_weight:
+    value: 0
+  dataset_length:
+    value: 1600
+  early_stop_patience:
+    value: 100
+  burn_in:
+    value: 0
+  val_every:
+    value: 1
+  link:
+    value: false
+
+  # --- model ---
+  model:
+    value: equiunet
+  depth:
+    value: 3
+  start_filters:
+    values: [16, 15,14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3]
+  max_rot_order:
+    value: 1
+  group_order:
+    value: -1
+  activation_type:
+    value: fourierbn
+  fourier_N:
+    value: 16
+  fourier_function:
+    value: p_relu
+  kernel_size:
+    value: 5
+  conv_sigma:
+    value: 0.93869
+

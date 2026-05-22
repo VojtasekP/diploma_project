@@ -1,0 +1,70 @@
+program: src/train.py
+method: grid
+
+metric:
+  goal: maximize
+  name: val_DetA
+
+# Train plain UNet from scratch on real data. Mirrors sweep_real_equi_grid.yaml
+# so the comparison is apples-to-apples: same data split, same mask config,
+# same schedule. Only the architecture (model + lr from the synthetic UNet
+# sweep) differs.
+
+parameters:
+  # --- training ---
+  seed:
+    values: [0, 1, 2, 3, 4]
+  pretrained_ckpt:
+    value: null
+  lr:
+    value: 1.6e-4                # from sweep_synth_unet_grid.yaml
+  wd:
+    value: 0.05                  # from sweep_synth_unet_grid.yaml
+  epochs:
+    value: 100
+  batch_size:
+    value: 16
+  dice_weight:
+    value: 0
+  dataset_length:
+    value: 1600
+  early_stop_patience:
+    value: 100
+  burn_in:
+    value: 0
+  val_every:
+    value: 1
+  link:
+    value: false
+  run_test:
+    value: true
+
+  # --- data: identical to sweep_real_equi_grid.yaml ---
+  data:
+    value: real
+  real_val_fraction:
+    value: 0.2
+  real_split_seed:
+    value: 0
+  real_split_mode:
+    value: contiguous
+  real_disk_radius:
+    value: 3.0
+  real_gaussian_sigma:
+    value: 0.8                   # matches synthetic mask density
+  real_cluster_threshold:
+    value: 5.0
+  real_train_patch_size:
+    value: 128
+  real_dominant_annotator:
+    value: 0                     # random per-frame, removes annotator bias
+
+  # --- model: plain UNet sf=16 ---
+  model:
+    value: unet
+  depth:
+    value: 3
+  start_filters:
+    value: 16
+  up_mode:
+    value: nearest

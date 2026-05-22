@@ -1,0 +1,75 @@
+program: src/train.py
+method: grid
+
+metric:
+  goal: maximize
+  name: val_DetA
+
+parameters:
+  # --- training ---
+  seed:
+    values: [0, 1, 2, 3, 4]
+  pretrained_ckpt:
+    value: null
+  lr:
+    value: 0.0047426
+  wd:
+    value: 0.082253
+  epochs:
+    value: 100
+  batch_size:
+    value: 16
+  dice_weight:
+    value: 0
+  dataset_length:
+    value: 1600
+  early_stop_patience:
+    value: 100
+  burn_in:
+    value: 0
+  val_every:
+    value: 1
+  link:
+    value: false
+  run_test:
+    value: true
+
+  # --- data ---
+  data:
+    value: real
+  real_val_fraction:
+    value: 0.2
+  real_split_seed:
+    value: 0
+  real_split_mode:
+    value: contiguous
+  real_disk_radius:
+    value: 3.0
+  real_gaussian_sigma:
+    value: 0.8                # matches synthetic mask density (~1.7% > 0.1)
+  real_cluster_threshold:
+    value: 5.0
+  real_train_patch_size:
+    value: 128
+
+  # --- model ---
+  model:
+    value: equiunet
+  depth:
+    value: 3
+  start_filters:
+    value: 16
+  max_rot_order:
+    value: 1
+  group_order:
+    value: -1
+  activation_type:
+    value: fourierbn
+  fourier_N:
+    value: 16
+  fourier_function:
+    value: p_relu
+  kernel_size:
+    value: 5
+  conv_sigma:
+    value: 0.93869

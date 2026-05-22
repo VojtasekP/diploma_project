@@ -1,0 +1,66 @@
+program: src/train.py
+method: grid
+
+metric:
+  goal: maximize
+  name: val_DetA
+
+# Single-run "sweep": train one EquiUNet sf=16 on synthetic data
+# with the exact hparams from sweep_synth_equi_grid.yaml.
+# The resulting checkpoint (saved as `checkpoints/<run-name>-best.ckpt`) is
+# then fed to sweep_real_equi_finetune.yaml via `pretrained_ckpt`.
+
+parameters:
+  # --- training (matches sweep_synth_equi_grid.yaml) ---
+  seed:
+    value: 0
+  lr:
+    value: 0.0047426
+  wd:
+    value: 0.082253
+  epochs:
+    value: 100
+  batch_size:
+    value: 16
+  dice_weight:
+    value: 0
+  dataset_length:
+    value: 1600
+  early_stop_patience:
+    value: 100
+  burn_in:
+    value: 0
+  val_every:
+    value: 1
+  link:
+    value: false
+  run_test:
+    value: true
+  pretrained_ckpt:
+    value: null
+
+  # --- data: synthetic baseline ---
+  data:
+    value: synthetic
+
+  # --- model: EquiUNet sf=16 (matches sweep_synth_equi_grid.yaml) ---
+  model:
+    value: equiunet
+  depth:
+    value: 3
+  start_filters:
+    value: 16
+  max_rot_order:
+    value: 1
+  group_order:
+    value: -1
+  activation_type:
+    value: fourierbn
+  fourier_N:
+    value: 16
+  fourier_function:
+    value: p_relu
+  kernel_size:
+    value: 5
+  conv_sigma:
+    value: 0.93869

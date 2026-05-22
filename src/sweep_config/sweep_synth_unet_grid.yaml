@@ -1,0 +1,39 @@
+program: src/train.py
+method: grid
+
+metric:
+  goal: maximize
+  name: val_DetA
+
+parameters:
+  # --- training ---
+  seed:
+    values: [0, 1, 2, 3, 4]
+  lr:
+    value: 1.6e-4
+  wd:
+    value: 0.05
+  epochs:
+    value: 300
+  batch_size:
+    value: 16
+  dice_weight:
+    value: 0
+  dataset_length:
+    value: 1600
+  early_stop_patience:
+    value: 300
+  burn_in:
+    value: 0
+  link:
+    value: false
+
+  # --- model ---
+  model:
+    value: unet
+  depth:
+    value: 3
+  start_filters:
+    values: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+  up_mode:
+    value: nearest

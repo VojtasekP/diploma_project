@@ -1,0 +1,84 @@
+program: src/train.py
+method: grid
+
+metric:
+  goal: maximize
+  name: val_DetA
+
+# Fine-tune the synthetic-pretrained EquiUNet (from sweep_synth_equi_pretrain.yaml)
+# on real CCP data with Gaussian heatmap masks and a contiguous train/val split.
+#
+# Before running: set `pretrained_ckpt` below to the path produced by the
+# pretrain sweep, e.g.
+#   checkpoints/equiunet_sf16_seed0_synthetic_<run-name>-best.ckpt
+
+parameters:
+  # --- the actual fine-tuning hook ---
+  pretrained_ckpt:
+    value: checkpoints/equiunet_sf16_seed0_synthetic_twilight-sweep-1-best.ckpt
+
+  # --- training: lower lr + shorter schedule for fine-tuning ---
+  seed:
+    value: 0
+  lr:
+    value: 5e-5                                   # ~100× lower than pretrain lr (4.7e-3)
+  wd:
+    value: 0.01                                   # lighter regularisation when starting from a good init
+  epochs:
+    value: 50
+  batch_size:
+    value: 16
+  dice_weight:
+    value: 0
+  dataset_length:
+    value: 1600
+  early_stop_patience:
+    value: 15
+  burn_in:
+    value: 0
+  val_every:
+    value: 1
+  link:
+    value: false
+  run_test:
+    value: true
+
+  # --- data: real, contiguous split, Gaussian masks ---
+  data:
+    value: real
+  real_val_fraction:
+    value: 0.2
+  real_split_seed:
+    value: 0
+  real_split_mode:
+    value: contiguous
+  real_disk_radius:
+    value: 3.0
+  real_gaussian_sigma:
+    value: 0.8                # matches synthetic mask density (>0.1: 1.7% ≈ synthetic 1.75%)
+  real_cluster_threshold:
+    value: 5.0
+  real_train_patch_size:
+    value: 128
+
+  # --- model architecture must match the pretrain config exactly ---
+  model:
+    value: equiunet
+  depth:
+    value: 3
+  start_filters:
+    value: 16
+  max_rot_order:
+    value: 1
+  group_order:
+    value: -1
+  activation_type:
+    value: fourierbn
+  fourier_N:
+    value: 16
+  fourier_function:
+    value: p_relu
+  kernel_size:
+    value: 5
+  conv_sigma:
+    value: 0.93869
