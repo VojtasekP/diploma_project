@@ -1,0 +1,27 @@
+\begin{table}[ht]
+\centering
+\caption{Detection accuracy per approximate parameter budget. Each row reports val and test DetA (mean $\pm$ std over 5 seeds) for UNet and EquiUNet trained at matched model size. The parameter count is averaged across the two models (exact counts in Table~\ref{tab:arch_comparison}).}
+\label{tab:deta_results}
+\begin{tabular}{l ll ll}
+\toprule
+ & \multicolumn{2}{c}{\textbf{UNet}} & \multicolumn{2}{c}{\textbf{EquiUNet}} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+\textbf{Params} & Val DetA & Test DetA & Val DetA & Test DetA \\
+\midrule
+$\approx$ 17.0k & 0.7770 $\pm$ 0.0072 & 0.7934 $\pm$ 0.0084 & 0.8023 $\pm$ 0.0059 & 0.8027 $\pm$ 0.0095 \\
+$\approx$ 29.0k & 0.7797 $\pm$ 0.0059 & 0.7901 $\pm$ 0.0097 & 0.8030 $\pm$ 0.0052 & 0.8044 $\pm$ 0.0055 \\
+$\approx$ 46.1k & 0.7863 $\pm$ 0.0063 & 0.7884 $\pm$ 0.0138 & 0.8041 $\pm$ 0.0027 & 0.7931 $\pm$ 0.0065 \\
+$\approx$ 66.6k & 0.7909 $\pm$ 0.0041 & 0.7837 $\pm$ 0.0064 & 0.8076 $\pm$ 0.0061 & 0.8005 $\pm$ 0.0190 \\
+$\approx$ 89.9k & 0.7965 $\pm$ 0.0046 & 0.7976 $\pm$ 0.0051 & 0.8072 $\pm$ 0.0043 & 0.7972 $\pm$ 0.0189 \\
+$\approx$ 117.2k & 0.7991 $\pm$ 0.0036 & 0.7935 $\pm$ 0.0146 & 0.8087 $\pm$ 0.0030 & 0.7896 $\pm$ 0.0193 \\
+$\approx$ 150.1k & 0.8000 $\pm$ 0.0054 & 0.7887 $\pm$ 0.0100 & 0.8036 $\pm$ 0.0053 & 0.8016 $\pm$ 0.0150 \\
+$\approx$ 182.5k & 0.8049 $\pm$ 0.0035 & 0.7947 $\pm$ 0.0067 & 0.8106 $\pm$ 0.0036 & 0.8072 $\pm$ 0.0158 \\
+$\approx$ 222.5k & 0.8041 $\pm$ 0.0033 & 0.7983 $\pm$ 0.0121 & 0.8083 $\pm$ 0.0050 & 0.8076 $\pm$ 0.0087 \\
+$\approx$ 263.5k & 0.8063 $\pm$ 0.0034 & 0.7932 $\pm$ 0.0048 & 0.8129 $\pm$ 0.0016 & 0.8051 $\pm$ 0.0036 \\
+$\approx$ 309.9k & 0.8097 $\pm$ 0.0013 & 0.7997 $\pm$ 0.0038 & 0.8132 $\pm$ 0.0024 & 0.8075 $\pm$ 0.0146 \\
+$\approx$ 359.0k & 0.8103 $\pm$ 0.0023 & 0.8032 $\pm$ 0.0045 & 0.8113 $\pm$ 0.0025 & 0.8042 $\pm$ 0.0083 \\
+$\approx$ 413.1k & 0.8102 $\pm$ 0.0035 & 0.8013 $\pm$ 0.0054 & 0.8106 $\pm$ 0.0040 & 0.7889 $\pm$ 0.0251 \\
+$\approx$ 469.5k & 0.8106 $\pm$ 0.0024 & 0.8005 $\pm$ 0.0101 & 0.8104 $\pm$ 0.0014 & 0.8000 $\pm$ 0.0083 \\
+\bottomrule
+\end{tabular}
+\end{table}

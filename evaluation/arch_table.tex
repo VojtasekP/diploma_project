@@ -1,0 +1,27 @@
+\begin{table}[ht]
+\centering
+\caption{Per-layer channel widths and total parameter count for UNet and EquiUNet (depth=3, four encoder levels). Rows are matched by model size; reading across each row compares the two architectures at a comparable parameter budget.}
+\label{tab:arch_comparison}
+\begin{tabular}{ll ll}
+\toprule
+\multicolumn{2}{c}{\textbf{UNet}} & \multicolumn{2}{c}{\textbf{EquiUNet}} \\
+\cmidrule(lr){1-2}\cmidrule(lr){3-4}
+Channels & Params & Channels & Params \\
+\midrule
+$3{\to}6{\to}12{\to}24$ & 16.1k & $2{\to}4{\to}8{\to}16$ & 18.0k \\
+$4{\to}8{\to}16{\to}32$ & 28.5k & $3{\to}5{\to}10{\to}21$ & 29.6k \\
+$5{\to}10{\to}20{\to}40$ & 44.3k & $3{\to}7{\to}13{\to}26$ & 47.9k \\
+$6{\to}12{\to}24{\to}48$ & 63.7k & $4{\to}8{\to}16{\to}31$ & 69.5k \\
+$7{\to}14{\to}28{\to}56$ & 86.6k & $5{\to}9{\to}18{\to}37$ & 93.2k \\
+$8{\to}16{\to}32{\to}64$ & 113.0k & $5{\to}10{\to}21{\to}42$ & 121.4k \\
+$9{\to}18{\to}36{\to}72$ & 142.9k & $6{\to}12{\to}24{\to}47$ & 157.3k \\
+$10{\to}20{\to}40{\to}80$ & 176.3k & $7{\to}13{\to}26{\to}52$ & 188.8k \\
+$11{\to}22{\to}44{\to}88$ & 213.1k & $7{\to}14{\to}29{\to}58$ & 231.9k \\
+$12{\to}24{\to}48{\to}96$ & 253.5k & $8{\to}16{\to}31{\to}63$ & 273.4k \\
+$13{\to}26{\to}52{\to}104$ & 297.5k & $9{\to}17{\to}34{\to}68$ & 322.2k \\
+$14{\to}28{\to}56{\to}112$ & 344.9k & $9{\to}18{\to}37{\to}73$ & 373.2k \\
+$15{\to}30{\to}60{\to}120$ & 395.8k & $10{\to}20{\to}39{\to}79$ & 430.3k \\
+$16{\to}32{\to}64{\to}128$ & 450.2k & $10{\to}21{\to}42{\to}84$ & 488.9k \\
+\bottomrule
+\end{tabular}
+\end{table}
