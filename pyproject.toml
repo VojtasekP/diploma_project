@@ -1,0 +1,29 @@
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project]
+name = "unet-custom"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "escnn>=1.0.11",
+    "gdown>=5.2.1",
+    "ipython>=8.38.0",
+    "ipywidgets>=8.1.8",
+    "lightning>=2.6.1",
+    "matplotlib>=3.10.8",
+    "mrcfile>=1.5.4",
+    "nd2>=0.11.3",
+    "norfair>=2.3.0",
+    "ortools==9.9.3963",
+    "scipy>=1.14.1",
+    "opencv-python>=4.11.0.86",
+    "pandas>=2.3.3",
+    "scikit-image>=0.25.2",
+    "seaborn>=0.13.2",
+    "tifffile>=2024.1.1",
+    "torch>=2.10.0",
+    "wandb>=0.25.1",
+]

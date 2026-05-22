@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# Training artifacts
+checkpoints/
+wandb/
+*.ckpt
+*.pt
+
+# Data (large microscopy stacks)
+data/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Notebooks scratch (uncomment if testing.ipynb shouldn't be tracked)
+# *.ipynb_checkpoints/
+# testing.ipynb
+
+# Reference materials
+shape2fate.pdf
