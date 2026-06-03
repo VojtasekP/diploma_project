@@ -1,0 +1,6 @@
+ckpt,n_detections,det_only_DetA
+equiunet_sf16_seed0_synthetic_legendary-sweep-1-best.ckpt,13001,0.7786444324905863
+equiunet_sf16_seed1_synthetic_smooth-sweep-2-best.ckpt,12424,0.7745696454289829
+equiunet_sf16_seed2_synthetic_zany-sweep-2-best.ckpt,12925,0.7764008620689655
+equiunet_sf16_seed3_synthetic_rare-sweep-3-best.ckpt,12825,0.7805787084095683
+equiunet_sf16_seed4_synthetic_dashing-sweep-4-best.ckpt,12635,0.7839020720782329

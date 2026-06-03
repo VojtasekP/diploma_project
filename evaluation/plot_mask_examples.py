@@ -11,10 +11,10 @@ sys.path.insert(0, str(HERE.parent / "src"))
 from dataset.real_ccp import CCPCenterDataset
 
 DATA_DIR     = HERE.parent / "data" / "CME_tracking_validation"
-N_FRAMES     = 10
+N_FRAMES     = 4
 FRAME_STRIDE = 12          # evenly sample 10 frames out of 120
 DISK_RADIUS  = 3.0
-GAUSS_SIGMA  = 2
+GAUSS_SIGMA  = 0.8
 CLUSTER_THR  = 5.0
 OUT          = HERE / "mask_examples.png"
 
